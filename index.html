@@ -8,34 +8,27 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-<!-- Chess.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/1.4.0/chess.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
     --bg:#080b10;
-    --card:#10151d;
-    --card2:#151b25;
+    --card:#111720;
+    --card2:#171e28;
     --gold:#d8ad55;
-    --gold2:#f0ce7a;
-    --white:#f7f3ea;
-    --muted:#9ca5b3;
-    --green:#43c77a;
-    --red:#ef6262;
-    --orange:#ff9f43;
-    --blue:#58a6ff;
-    --purple:#b084f5;
+    --gold2:#f1d080;
+    --text:#f5f1e8;
+    --muted:#9ca6b5;
+    --green:#45c77a;
+    --red:#ed6565;
+    --blue:#5da9e9;
     --border:rgba(216,173,85,.18);
 }
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -44,21 +37,10 @@ html{
 
 body{
     font-family:"Cairo",sans-serif;
-
     background:
-        radial-gradient(
-            circle at 80% 10%,
-            rgba(216,173,85,.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 10% 40%,
-            rgba(255,255,255,.035),
-            transparent 25%
-        ),
-        var(--bg);
-
-    color:var(--white);
+        radial-gradient(circle at 80% 0%,rgba(216,173,85,.11),transparent 30%),
+        linear-gradient(180deg,#080b10,#0b1017 50%,#080b10);
+    color:var(--text);
     line-height:1.8;
 }
 
@@ -72,536 +54,365 @@ a{
     margin:auto;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
+/* NAV */
 
 nav{
     position:fixed;
     top:0;
-    width:100%;
-    z-index:100;
-
-    backdrop-filter:blur(18px);
-
-    background:rgba(8,11,16,.82);
-
+    left:0;
+    right:0;
+    z-index:1000;
+    background:rgba(8,11,16,.88);
+    backdrop-filter:blur(15px);
     border-bottom:1px solid var(--border);
 }
 
-.nav-inner{
-    height:72px;
-
+.nav{
+    height:70px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
     display:flex;
     align-items:center;
-
-    gap:10px;
-
-    font-size:20px;
+    gap:9px;
     font-weight:800;
 }
 
 .logo-piece{
+    font-size:29px;
     color:var(--gold);
-    font-size:30px;
 }
 
-.nav-links{
+.links{
     display:flex;
     gap:25px;
-
     list-style:none;
 }
 
-.nav-links a{
-    color:#c9ced7;
-
+.links a{
+    color:#c5ccd5;
     font-size:14px;
-
     transition:.3s;
 }
 
-.nav-links a:hover{
+.links a:hover{
     color:var(--gold2);
 }
 
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
     min-height:100vh;
-
     display:flex;
     align-items:center;
-
     padding-top:90px;
-
-    position:relative;
-    overflow:hidden;
-}
-
-.hero::before{
-    content:"♟";
-
-    position:absolute;
-
-    font-size:420px;
-
-    left:-80px;
-    bottom:-140px;
-
-    color:rgba(216,173,85,.025);
-
-    line-height:1;
 }
 
 .hero-grid{
     display:grid;
-
-    grid-template-columns:1.1fr .9fr;
-
-    gap:50px;
-
+    grid-template-columns:1fr 1fr;
     align-items:center;
+    gap:50px;
 }
 
 .badge{
     display:inline-flex;
-
     align-items:center;
-
     gap:8px;
-
+    padding:6px 14px;
     border:1px solid var(--border);
-
-    background:rgba(216,173,85,.06);
-
-    color:var(--gold2);
-
-    padding:7px 15px;
-
     border-radius:30px;
-
+    color:var(--gold2);
+    background:rgba(216,173,85,.05);
     font-size:13px;
-
-    margin-bottom:22px;
+    margin-bottom:20px;
 }
 
-.badge span{
+.badge i{
     width:8px;
     height:8px;
-
-    border-radius:50%;
-
     background:var(--green);
+    border-radius:50%;
 }
 
 .hero h1{
-    font-size:clamp(42px,7vw,75px);
-
+    font-size:clamp(43px,7vw,76px);
     line-height:1.15;
-
-    margin-bottom:10px;
-
-    font-weight:800;
+    margin-bottom:8px;
 }
 
-.hero h1 strong{
+.hero h1 span{
     color:var(--gold2);
 }
 
 .hero h2{
-    font-size:24px;
-
-    color:#c4cad3;
-
+    color:#c7ced8;
+    font-size:23px;
     font-weight:500;
-
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .hero p{
     color:var(--muted);
-
-    max-width:620px;
-
+    max-width:600px;
     font-size:16px;
 }
 
 .buttons{
     display:flex;
-
     flex-wrap:wrap;
-
-    gap:13px;
-
-    margin-top:30px;
+    gap:12px;
+    margin-top:28px;
 }
 
 .btn{
-    padding:12px 22px;
-
+    padding:11px 20px;
     border-radius:10px;
-
-    font-weight:700;
-
-    font-size:14px;
-
     border:1px solid var(--border);
-
+    font-size:14px;
+    font-weight:700;
     transition:.3s;
-
-    cursor:pointer;
 }
 
-.btn-primary{
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold),
-            #a87a28
-        );
-
-    color:#111;
-}
-
-.btn-primary:hover{
+.btn:hover{
     transform:translateY(-2px);
 }
 
-.btn-secondary{
+.primary{
+    background:linear-gradient(135deg,var(--gold),#a97827);
+    color:#111;
+}
+
+.secondary{
     background:var(--card);
-
-    color:var(--white);
 }
 
-.btn-secondary:hover{
-    border-color:var(--gold);
-}
+/* BOARD */
 
-
-/* =========================
-   CHESS BOARD
-========================= */
-
-.board-wrapper{
+.board-area{
     display:flex;
     justify-content:center;
 }
 
-.chessboard{
-    width:min(430px,85vw);
-
+.board{
+    width:min(430px,86vw);
     aspect-ratio:1;
-
     display:grid;
-
     grid-template-columns:repeat(8,1fr);
-
-    border:7px solid #242a34;
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.5),
-        0 0 50px rgba(216,173,85,.08);
+    border:7px solid #252c35;
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
 }
 
-.square{
+.s{
     display:flex;
-
-    justify-content:center;
-
     align-items:center;
-
+    justify-content:center;
     font-size:clamp(25px,5vw,50px);
 }
 
 .light{
-    background:#e4d5b7;
+    background:#e6d7b9;
 }
 
 .dark{
     background:#765d43;
 }
 
+.black{
+    color:#111;
+}
 
-/* =========================
-   SECTION
-========================= */
+.white{
+    color:#f5f0df;
+    text-shadow:0 2px 3px #222;
+}
+
+/* SECTIONS */
 
 section{
-    padding:95px 0;
+    padding:90px 0;
 }
 
-.section-title{
+.title{
     text-align:center;
-
-    margin-bottom:45px;
+    margin-bottom:40px;
 }
 
-.section-title .small{
+.title small{
     color:var(--gold);
-
-    font-size:13px;
-
     font-weight:700;
 }
 
-.section-title h2{
+.title h2{
     font-size:34px;
-
-    margin-top:5px;
+    margin-top:4px;
 }
 
-.section-title p{
+.title p{
     color:var(--muted);
-
     font-size:14px;
-
-    margin-top:8px;
 }
 
-
-/* =========================
-   STATS
-========================= */
+/* STATS */
 
 .stats{
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
-    gap:18px;
+    gap:16px;
 }
 
 .stat{
-    background:
-        linear-gradient(
-            145deg,
-            var(--card2),
-            var(--card)
-        );
-
+    background:linear-gradient(145deg,var(--card2),var(--card));
     border:1px solid var(--border);
-
     border-radius:16px;
-
-    padding:25px;
-
+    padding:25px 15px;
     text-align:center;
-
-    position:relative;
-
-    overflow:hidden;
 }
 
-.stat::after{
-    content:"";
-
-    position:absolute;
-
-    width:90px;
-    height:90px;
-
-    border-radius:50%;
-
-    background:rgba(216,173,85,.06);
-
-    left:-30px;
-    bottom:-40px;
-}
-
-.stat-icon{
+.stat .icon{
     font-size:27px;
-
     color:var(--gold);
 }
 
 .stat h3{
     font-size:30px;
-
-    margin:7px 0 2px;
+    margin:4px 0;
 }
 
 .stat p{
     color:var(--muted);
-
     font-size:13px;
 }
 
+/* STATUS */
 
-/* =========================
-   CARDS
-========================= */
+.status{
+    margin-top:20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+}
 
-.profile-grid{
+.status.error{
+    color:var(--red);
+}
+
+.retry{
+    display:none;
+    margin:12px auto 0;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--gold2);
+    padding:8px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:inherit;
+}
+
+/* CARDS */
+
+.grid{
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
-    gap:25px;
+    gap:20px;
 }
 
 .card{
-    background:
-        linear-gradient(
-            145deg,
-            var(--card2),
-            var(--card)
-        );
-
+    background:linear-gradient(145deg,var(--card2),var(--card));
     border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:28px;
+    border-radius:17px;
+    padding:27px;
 }
 
 .card h3{
-    margin-bottom:20px;
-
-    font-size:20px;
+    margin-bottom:18px;
 }
 
-.profile-row{
+.row{
     display:flex;
-
     justify-content:space-between;
-
-    padding:13px 0;
-
+    padding:12px 0;
     border-bottom:1px solid rgba(255,255,255,.06);
 }
 
-.profile-row:last-child{
+.row:last-child{
     border-bottom:0;
 }
 
-.profile-row span:first-child{
+.row span{
     color:var(--muted);
 }
 
+/* COLOR STATS */
 
-/* =========================
-   PROGRESS
-========================= */
-
-.progress-item{
-    margin-bottom:24px;
+.color-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
-.progress-head{
-    display:flex;
+.color-card{
+    background:#0d131b;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:13px;
+    padding:18px;
+}
 
-    justify-content:space-between;
-
+.color-card h4{
     margin-bottom:8px;
-
-    font-size:14px;
 }
 
-.progress-head span:last-child{
+.color-card p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.color-number{
+    font-size:26px;
+    font-weight:800;
     color:var(--gold2);
-
-    font-weight:700;
 }
 
-.progress{
-    height:9px;
-
-    background:#252c36;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.progress-bar{
-    height:100%;
-
-    width:0;
-
-    background:
-        linear-gradient(
-            90deg,
-            #9d722b,
-            var(--gold2)
-        );
-
-    border-radius:20px;
-
-    transition:1.5s;
-}
-
-
-/* =========================
-   GAMES
-========================= */
+/* GAMES */
 
 .games{
     display:grid;
-
     gap:12px;
 }
 
 .game{
     display:grid;
-
-    grid-template-columns:55px 1fr 100px;
-
+    grid-template-columns:50px 1fr 90px;
+    gap:12px;
     align-items:center;
-
-    gap:15px;
-
-    background:var(--card);
-
-    border:1px solid rgba(255,255,255,.05);
-
     padding:14px;
-
+    background:var(--card);
+    border:1px solid rgba(255,255,255,.05);
     border-radius:12px;
 }
 
 .game-icon{
     width:45px;
     height:45px;
-
-    border-radius:10px;
-
     display:flex;
-
-    align-items:center;
     justify-content:center;
-
-    font-size:22px;
-
-    background:#1d2530;
+    align-items:center;
+    border-radius:10px;
+    background:#202832;
+    font-size:23px;
 }
 
-.game-info h4{
-    font-size:14px;
-}
-
-.game-info p{
-    font-size:11px;
-
+.game p{
     color:var(--muted);
+    font-size:11px;
 }
 
 .result{
     text-align:center;
-
     font-weight:800;
-
-    font-size:13px;
 }
 
 .win{
@@ -612,250 +423,29 @@ section{
     color:var(--red);
 }
 
-
-/* =========================
-   ANALYSIS
-========================= */
-
-.analysis-grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(5,1fr);
-
-    gap:14px;
-
-    margin-bottom:25px;
+.draw{
+    color:var(--blue);
 }
-
-.analysis-stat{
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:15px;
-
-    padding:20px 10px;
-
-    text-align:center;
-}
-
-.analysis-stat .icon{
-    font-size:25px;
-
-    margin-bottom:5px;
-}
-
-.analysis-stat h4{
-    font-size:25px;
-}
-
-.analysis-stat p{
-    font-size:12px;
-
-    color:var(--muted);
-}
-
-.brilliant{
-    color:#65e6a0;
-}
-
-.good{
-    color:#58a6ff;
-}
-
-.mistake{
-    color:#ffcc66;
-}
-
-.blunder{
-    color:#ff6b6b;
-}
-
-.inaccuracy{
-    color:#b084f5;
-}
-
-
-/* ENGINE */
-
-.engine-status{
-    padding:14px;
-
-    border-radius:10px;
-
-    background:#0c1118;
-
-    border:1px solid rgba(255,255,255,.06);
-
-    margin-bottom:18px;
-
-    color:var(--muted);
-
-    font-size:13px;
-
-    text-align:center;
-}
-
-.engine-status.ready{
-    color:var(--green);
-}
-
-.engine-status.loading{
-    color:var(--gold2);
-}
-
-.analysis-progress{
-    height:8px;
-
-    background:#252c36;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin-top:10px;
-}
-
-.analysis-progress-bar{
-    width:0;
-
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--gold),
-            var(--gold2)
-        );
-
-    transition:.3s;
-}
-
-
-/* ANALYSIS GAME */
-
-.analysis-game{
-    margin-top:20px;
-
-    padding:20px;
-
-    border-radius:14px;
-
-    background:#0c1118;
-
-    border:1px solid rgba(255,255,255,.06);
-}
-
-.analysis-game-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    margin-bottom:15px;
-}
-
-.analysis-game-header strong{
-    color:var(--gold2);
-}
-
-.move-list{
-    display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(150px,1fr));
-
-    gap:8px;
-}
-
-.move-item{
-    padding:9px 10px;
-
-    border-radius:8px;
-
-    background:#151c26;
-
-    font-size:12px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:8px;
-}
-
-.move-item .classification{
-    font-weight:800;
-}
-
-.analyze-button{
-    width:100%;
-
-    margin-top:12px;
-
-    padding:12px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold),
-            #a87a28
-        );
-
-    color:#111;
-
-    font-family:inherit;
-
-    font-weight:800;
-
-    cursor:pointer;
-}
-
-.analyze-button:disabled{
-    opacity:.5;
-
-    cursor:not-allowed;
-}
-
 
 /* ABOUT */
 
 .about{
-    text-align:center;
-
     max-width:800px;
-
     margin:auto;
+    text-align:center;
 }
 
 .about p{
     color:var(--muted);
-
-    line-height:2;
 }
-
 
 /* FOOTER */
 
 footer{
     border-top:1px solid var(--border);
-
     padding:35px 0;
-
     text-align:center;
-
     color:var(--muted);
-
     font-size:13px;
 }
 
@@ -863,18 +453,16 @@ footer strong{
     color:var(--gold2);
 }
 
-
 /* MOBILE */
 
 @media(max-width:850px){
 
-    .nav-links{
+    .links{
         display:none;
     }
 
     .hero-grid{
         grid-template-columns:1fr;
-
         text-align:center;
     }
 
@@ -886,26 +474,24 @@ footer strong{
         justify-content:center;
     }
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .profile-grid{
-        grid-template-columns:1fr;
-    }
-
-    .analysis-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .board-wrapper{
+    .board-area{
         order:-1;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
     }
 }
 
-
 @media(max-width:500px){
+
+    section{
+        padding:70px 0;
+    }
 
     .hero h1{
         font-size:43px;
@@ -915,150 +501,79 @@ footer strong{
         font-size:19px;
     }
 
-    section{
-        padding:70px 0;
-    }
-
     .stats{
-        gap:10px;
+        gap:9px;
     }
 
     .stat{
-        padding:18px 10px;
+        padding:18px 8px;
     }
 
     .stat h3{
         font-size:24px;
     }
 
-    .game{
-        grid-template-columns:
-            45px 1fr 65px;
-
-        gap:8px;
-    }
-
-    .analysis-grid{
-        grid-template-columns:
-            repeat(2,1fr);
+    .color-grid{
+        grid-template-columns:1fr;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     NAVBAR
-========================= -->
-
 <nav>
-
-<div class="container nav-inner">
+<div class="container nav">
 
 <a href="#" class="logo">
-
 <span class="logo-piece">♞</span>
-
 <span>سعيد أيت عبو</span>
-
 </a>
 
-
-<ul class="nav-links">
-
-<li>
-<a href="#home">الرئيسية</a>
-</li>
-
-<li>
-<a href="#stats">الإحصائيات</a>
-</li>
-
-<li>
-<a href="#games">المباريات</a>
-</li>
-
-<li>
-<a href="#analysis">التحليل</a>
-</li>
-
-<li>
-<a href="#about">عنّي</a>
-</li>
-
+<ul class="links">
+<li><a href="#home">الرئيسية</a></li>
+<li><a href="#stats">الإحصائيات</a></li>
+<li><a href="#games">المباريات</a></li>
+<li><a href="#about">عنّي</a></li>
 </ul>
 
 </div>
-
 </nav>
 
-
-<!-- =========================
-     HERO
-========================= -->
 
 <header class="hero" id="home">
 
 <div class="container hero-grid">
 
-
 <div>
 
 <div class="badge">
-
-<span></span>
-
-لاعب شطرنج نشط
-
+<i></i>
+حساب Chess.com متصل
 </div>
 
-
 <h1>
-
-سعيد <strong>أيت عبو</strong>
-
+سعيد <span>أيت عبو</span>
 </h1>
 
-
-<h2>
-♟ لاعب شطرنج • Chess Player
-</h2>
-
+<h2>♟ لاعب شطرنج</h2>
 
 <p>
-
 مرحباً بك في موقعي الشخصي للشطرنج.
-هنا أشارك مسيرتي في عالم الشطرنج،
-إحصائياتي، مبارياتي وتحليلاتي بواسطة Stockfish.
-
+يمكنك هنا مشاهدة إحصائياتي ومبارياتي
+وتطور أدائي في اللعبة.
 </p>
-
 
 <div class="buttons">
 
-<a
-class="btn btn-primary"
+<a class="btn primary"
 href="https://www.chess.com/member/SAID-AIT19"
-target="_blank"
-rel="noopener"
->
-
+target="_blank">
 ♟ حسابي على Chess.com
-
 </a>
 
-
-<a
-class="btn btn-secondary"
-href="#stats"
->
-
-استكشف إحصائياتي ↓
-
+<a class="btn secondary" href="#stats">
+عرض الإحصائيات ↓
 </a>
 
 </div>
@@ -1066,274 +581,172 @@ href="#stats"
 </div>
 
 
-<!-- BOARD -->
+<div class="board-area">
 
-<div class="board-wrapper">
+<div class="board">
 
-<div class="chessboard">
+<div class="s light black">♜</div>
+<div class="s dark black">♞</div>
+<div class="s light black">♝</div>
+<div class="s dark black">♛</div>
+<div class="s light black">♚</div>
+<div class="s dark black">♝</div>
+<div class="s light black">♞</div>
+<div class="s dark black">♜</div>
 
+<div class="s dark black">♟</div>
+<div class="s light black">♟</div>
+<div class="s dark black">♟</div>
+<div class="s light black">♟</div>
+<div class="s dark black">♟</div>
+<div class="s light black">♟</div>
+<div class="s dark black">♟</div>
+<div class="s light black">♟</div>
 
-<div class="square light">♜</div>
-<div class="square dark">♞</div>
-<div class="square light">♝</div>
-<div class="square dark">♛</div>
-<div class="square light">♚</div>
-<div class="square dark">♝</div>
-<div class="square light">♞</div>
-<div class="square dark">♜</div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
 
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
 
-<div class="square dark">♟</div>
-<div class="square light">♟</div>
-<div class="square dark">♟</div>
-<div class="square light">♟</div>
-<div class="square dark">♟</div>
-<div class="square light">♟</div>
-<div class="square dark">♟</div>
-<div class="square light">♟</div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
 
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
+<div class="s dark"></div>
+<div class="s light"></div>
 
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
+<div class="s light white">♙</div>
+<div class="s dark white">♙</div>
+<div class="s light white">♙</div>
+<div class="s dark white">♙</div>
+<div class="s light white">♙</div>
+<div class="s dark white">♙</div>
+<div class="s light white">♙</div>
+<div class="s dark white">♙</div>
 
+<div class="s dark white">♖</div>
+<div class="s light white">♘</div>
+<div class="s dark white">♗</div>
+<div class="s light white">♕</div>
+<div class="s dark white">♔</div>
+<div class="s light white">♗</div>
+<div class="s dark white">♘</div>
+<div class="s light white">♖</div>
 
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-
-
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-
-
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-<div class="square dark"></div>
-<div class="square light"></div>
-
-
-<div class="square light">♙</div>
-<div class="square dark">♙</div>
-<div class="square light">♙</div>
-<div class="square dark">♙</div>
-<div class="square light">♙</div>
-<div class="square dark">♙</div>
-<div class="square light">♙</div>
-<div class="square dark">♙</div>
-
-
-<div class="square dark">♖</div>
-<div class="square light">♘</div>
-<div class="square dark">♗</div>
-<div class="square light">♕</div>
-<div class="square dark">♔</div>
-<div class="square light">♗</div>
-<div class="square dark">♘</div>
-<div class="square light">♖</div>
-
+</div>
 </div>
 
 </div>
-
-</div>
-
 </header>
 
-
-<!-- =========================
-     STATS
-========================= -->
 
 <section id="stats">
 
 <div class="container">
 
-
-<div class="section-title">
-
-<div class="small">
-PLAYER STATISTICS
+<div class="title">
+<small>PLAYER STATISTICS</small>
+<h2>إحصائيات اللاعب</h2>
+<p>بيانات عامة من حساب Chess.com</p>
 </div>
-
-<h2>
-إحصائيات اللاعب
-</h2>
-
-<p>
-بيانات الحساب العام على Chess.com
-</p>
-
-</div>
-
 
 <div class="stats">
 
+<div class="stat">
+<div class="icon">♟</div>
+<h3 id="totalGames">—</h3>
+<p>إجمالي المباريات</p>
+</div>
 
 <div class="stat">
-
-<div class="stat-icon">♟</div>
-
-<h3 id="gamesCount">—</h3>
-
-<p>
-عدد المباريات
-</p>
-
+<div class="icon">🏆</div>
+<h3 id="wins">—</h3>
+<p>الانتصارات</p>
 </div>
-
 
 <div class="stat">
-
-<div class="stat-icon">🏆</div>
-
-<h3 id="winsCount">—</h3>
-
-<p>
-الانتصارات
-</p>
-
+<div class="icon">❌</div>
+<h3 id="losses">—</h3>
+<p>الخسائر</p>
 </div>
-
 
 <div class="stat">
-
-<div class="stat-icon">⚔️</div>
-
-<h3 id="lossesCount">—</h3>
-
-<p>
-الخسائر
-</p>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">♜</div>
-
-<h3 id="rating">—</h3>
-
-<p>
-تصنيف Chess.com
-</p>
-
-</div>
-
-
+<div class="icon">🤝</div>
+<h3 id="draws">—</h3>
+<p>التعادلات</p>
 </div>
 
 </div>
 
+<div class="status" id="status">
+جاري تحميل إحصائيات Chess.com...
+</div>
+
+<button class="retry" id="retry">
+إعادة المحاولة
+</button>
+
+</div>
 </section>
 
-
-<!-- =========================
-     PERFORMANCE
-========================= -->
 
 <section>
 
 <div class="container">
 
-
-<div class="section-title">
-
-<div class="small">
-PERFORMANCE
+<div class="title">
+<small>PROFILE</small>
+<h2>معلومات الحساب</h2>
 </div>
 
-<h2>
-الأداء بالأبيض والأسود
-</h2>
-
-<p>
-يتم حساب النسب من المباريات التي يتم تحميلها من Chess.com
-</p>
-
-</div>
-
-
-<div class="profile-grid">
-
+<div class="grid">
 
 <div class="card">
 
-<h3>
-♔ معلومات الحساب
-</h3>
+<h3>👤 الحساب</h3>
 
-
-<div class="profile-row">
-
-<span>
-اسم المستخدم
-</span>
-
-<strong>
-SAID-AIT19
-</strong>
-
+<div class="row">
+<span>اسم اللاعب</span>
+<strong>سعيد أيت عبو</strong>
 </div>
 
-
-<div class="profile-row">
-
-<span>
-الاسم
-</span>
-
-<strong>
-سعيد أيت عبو
-</strong>
-
+<div class="row">
+<span>اسم المستخدم</span>
+<strong>SAID-AIT19</strong>
 </div>
 
-
-<div class="profile-row">
-
-<span>
-الحالة
-</span>
-
-<strong class="win">
-● نشط
-</strong>
-
+<div class="row">
+<span>Chess.com</span>
+<strong id="profileStatus">متصل</strong>
 </div>
 
-
-<div class="profile-row">
-
-<span>
-المنصة
-</span>
-
-<strong>
-Chess.com
-</strong>
-
+<div class="row">
+<span>التصنيف السريع</span>
+<strong id="rapidRating">—</strong>
 </div>
 
 </div>
@@ -1341,111 +754,113 @@ Chess.com
 
 <div class="card">
 
-<h3>
-📊 نسب النتائج
-</h3>
+<h3>♔ الأداء حسب اللون</h3>
 
+<div class="color-grid">
 
-<div class="progress-item">
-
-<div class="progress-head">
-
-<span>
-الفوز بالأبيض
-</span>
-
-<span id="whitePercent">
-—
-</span>
-
+<div class="color-card">
+<h4>♔ بالأبيض</h4>
+<div class="color-number" id="whiteWins">—</div>
+<p id="whiteDetails">جاري الحساب...</p>
 </div>
 
-
-<div class="progress">
-
-<div
-class="progress-bar"
-id="whiteBar">
+<div class="color-card">
+<h4>♚ بالأسود</h4>
+<div class="color-number" id="blackWins">—</div>
+<p id="blackDetails">جاري الحساب...</p>
 </div>
 
 </div>
 
 </div>
 
-
-<div class="progress-item">
-
-<div class="progress-head">
-
-<span>
-الفوز بالأسود
-</span>
-
-<span id="blackPercent">
-—
-</span>
-
 </div>
-
-
-<div class="progress">
-
-<div
-class="progress-bar"
-id="blackBar">
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
 </div>
 
 </section>
 
-
-<!-- =========================
-     GAMES
-========================= -->
 
 <section id="games">
 
 <div class="container">
 
-
-<div class="section-title">
-
-<div class="small">
-RECENT GAMES
+<div class="title">
+<small>RECENT GAMES</small>
+<h2>آخر المباريات</h2>
+<p>آخر المباريات المتاحة في أرشيف Chess.com</p>
 </div>
 
-<h2>
-آخر المباريات
-</h2>
+<div class="games" id="gamesList">
+
+<div class="card" style="text-align:center;color:#9ca6b5;">
+جاري تحميل المباريات...
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="title">
+<small>ANALYSIS</small>
+<h2>التحليل المتقدم</h2>
+<p>إحصائيات تحتاج إلى تحليل نقلات المباريات</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>✨ Brilliant</h3>
+<p style="color:#9ca6b5;">
+لا يتم وضع رقم تقديري هنا. للحصول على عدد النقلات
+Brilliant بدقة، يجب تحليل ملفات PGN بواسطة محرك شطرنج.
+</p>
+</div>
+
+<div class="card">
+<h3>⚠️ Blunder</h3>
+<p style="color:#9ca6b5;">
+لا يتم وضع رقم تقديري هنا. سيتم حساب الأخطاء من النقلات
+الفعلية عند إضافة نظام تحليل PGN.
+</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<section id="about">
+
+<div class="container">
+
+<div class="title">
+<small>ABOUT</small>
+<h2>عن الموقع</h2>
+</div>
+
+<div class="about">
 
 <p>
-آخر المباريات المتاحة من حساب Chess.com
+هذا الموقع الشخصي مخصص لعرض مسيرة
+<strong style="color:#f1d080;">سعيد أيت عبو</strong>
+في عالم الشطرنج، مع الاعتماد على البيانات العامة
+المتاحة من Chess.com.
 </p>
 
-</div>
+<div class="buttons" style="justify-content:center;">
 
-
-<div
-class="games"
-id="gamesList"
->
-
-<div
-class="card"
-style="text-align:center;color:#9ca5b3;"
->
-
-جاري تحميل المباريات...
+<a class="btn primary"
+href="https://www.chess.com/member/SAID-AIT19"
+target="_blank">
+زيارة حساب Chess.com
+</a>
 
 </div>
 
@@ -1456,291 +871,406 @@ style="text-align:center;color:#9ca5b3;"
 </section>
 
 
-<!-- =========================
-     STOCKFISH ANALYSIS
-========================= -->
-
-<section id="analysis">
+<footer>
 
 <div class="container">
 
-
-<div class="section-title">
-
-<div class="small">
-STOCKFISH 18 ANALYSIS
-</div>
-
-<h2>
-♟ التحليل الذكي بالمحرك
-</h2>
-
 <p>
-تحليل النقلات باستخدام Stockfish داخل المتصفح
+♟ <strong>سعيد أيت عبو</strong> — لاعب شطرنج
 </p>
 
-</div>
-
-
-<div class="card">
-
-
-<div
-id="engineStatus"
-class="engine-status loading"
->
-
-⏳ جاري تجهيز Stockfish...
+<p>SAID-AIT19</p>
 
 </div>
 
+</footer>
 
-<div class="analysis-progress">
 
-<div
-id="analysisProgressBar"
-class="analysis-progress-bar"
-></div>
+<script>
 
-</div>
+const USERNAME = "SAID-AIT19";
 
+const API =
+"https://api.chess.com/pub/player/" + USERNAME;
 
-<div
-id="analysisProgressText"
-style="
-text-align:center;
-font-size:12px;
-color:#9ca5b3;
-margin-top:8px;
-"
->
 
-المحرك لم يبدأ التحليل بعد.
+/* عناصر الصفحة */
 
-</div>
+const totalGames =
+document.getElementById("totalGames");
 
+const wins =
+document.getElementById("wins");
 
-<div class="analysis-grid" style="margin-top:25px;">
+const losses =
+document.getElementById("losses");
 
+const draws =
+document.getElementById("draws");
 
-<div class="analysis-stat">
+const status =
+document.getElementById("status");
 
-<div class="icon brilliant">
-✨
-</div>
+const retry =
+document.getElementById("retry");
 
-<h4
-id="brilliantCount"
-class="brilliant"
->
-0
-</h4>
 
-<p>
-Brilliant
-</p>
+/* طلب آمن */
 
-</div>
+async function getJSON(url){
 
+    const response = await fetch(url, {
+        method:"GET",
+        headers:{
+            "Accept":"application/json"
+        },
+        cache:"no-store"
+    });
 
-<div class="analysis-stat">
+    if(!response.ok){
+        throw new Error(
+            "HTTP " + response.status
+        );
+    }
 
-<div class="icon blunder">
-⚠️
-</div>
+    return await response.json();
+}
 
-<h4
-id="blunderCount"
-class="blunder"
->
-0
-</h4>
 
-<p>
-Blunder
-</p>
+/* الإحصائيات الرسمية */
 
-</div>
+async function loadStats(){
 
+    const data =
+        await getJSON(API + "/stats");
 
-<div class="analysis-stat">
 
-<div class="icon mistake">
-❗
-</div>
+    let total = 0;
+    let w = 0;
+    let l = 0;
+    let d = 0;
 
-<h4
-id="mistakeCount"
-class="mistake"
->
-0
-</h4>
 
-<p>
-Mistake
-</p>
+    const modes = [
+        "chess_rapid",
+        "chess_blitz",
+        "chess_bullet",
+        "chess_daily"
+    ];
 
-</div>
 
+    modes.forEach(mode => {
 
-<div class="analysis-stat">
+        const record =
+            data[mode] &&
+            data[mode].record;
 
-<div class="icon inaccuracy">
-〽️
-</div>
+        if(!record) return;
 
-<h4
-id="inaccuracyCount"
-class="inaccuracy"
->
-0
-</h4>
+        w += Number(record.win || 0);
+        l += Number(record.loss || 0);
+        d += Number(record.draw || 0);
 
-<p>
-Inaccuracy
-</p>
+    });
 
-</div>
 
+    total = w + l + d;
 
-<div class="analysis-stat">
 
-<div class="icon good">
-👍
-</div>
+    totalGames.textContent =
+        total.toLocaleString("en-US");
 
-<h4
-id="goodCount"
-class="good"
->
-0
-</h4>
+    wins.textContent =
+        w.toLocaleString("en-US");
 
-<p>
-Good
-</p>
+    losses.textContent =
+        l.toLocaleString("en-US");
 
-</div>
+    draws.textContent =
+        d.toLocaleString("en-US");
 
 
-</div>
+    /* Rapid rating */
 
+    if(data.chess_rapid &&
+       data.chess_rapid.last &&
+       data.chess_rapid.last.rating){
 
-<div class="profile-grid">
+        document.getElementById(
+            "rapidRating"
+        ).textContent =
+            data.chess_rapid.last.rating;
+    }
 
+    else{
+        document.getElementById(
+            "rapidRating"
+        ).textContent = "غير متاح";
+    }
+}
 
-<div class="card">
 
-<h3>
-🎯 دقة اللعب
-</h3>
+/* أرشيف المباريات */
 
+async function loadArchives(){
 
-<div class="profile-row">
+    return await getJSON(
+        API + "/games/archives"
+    );
+}
 
-<span>
-Accuracy
-</span>
 
-<strong
-id="accuracyValue"
-style="color:#f0ce7a;"
->
-—
-</strong>
+/* تحليل المباريات */
 
-</div>
+async function loadGames(){
 
+    const archiveData =
+        await loadArchives();
 
-<div class="profile-row">
+    const archives =
+        archiveData.archives || [];
 
-<span>
-عدد النقلات المحللة
-</span>
 
-<strong
-id="movesAnalyzed"
->
-0
-</strong>
+    if(!archives.length){
+        throw new Error(
+            "لا توجد أرشيفات للمباريات"
+        );
+    }
 
-</div>
 
+    /*
+      نستخدم آخر أرشيف متاح
+      بدل افتراض الشهر الحالي.
+    */
 
-<div class="profile-row">
+    const recentArchives =
+        archives.slice(-3).reverse();
 
-<span>
-المباريات المحللة
-</span>
 
-<strong
-id="gamesAnalyzed"
->
-0
-</strong>
+    let allGames = [];
 
-</div>
 
+    /*
+      نطلب الأرشيفات بالتتابع
+      لتجنب كثرة الطلبات.
+    */
 
-<button
-class="analyze-button"
-id="analyzeAllButton"
-disabled
->
+    for(const url of recentArchives){
 
-♟ تحليل آخر المباريات
+        try{
 
-</button>
+            const data =
+                await getJSON(url);
 
-</div>
+            if(data.games){
 
+                allGames =
+                    allGames.concat(data.games);
+            }
 
-<div class="card">
+        }catch(error){
 
-<h3>
-📈 مستوى التحليل
-</h3>
+            console.log(
+                "Archive error:",
+                url,
+                error
+            );
 
+        }
+    }
 
-<div class="profile-row">
 
-<span>
-المحرك
-</span>
+    if(!allGames.length){
 
-<strong>
-Stockfish 18
-</strong>
+        document.getElementById(
+            "gamesList"
+        ).innerHTML =
+        `
+        <div class="card" style="text-align:center;">
+        لم نتمكن من العثور على مباريات حديثة.
+        </div>
+        `;
 
-</div>
+        return;
+    }
 
 
-<div class="profile-row">
+    /* آخر 8 مباريات */
 
-<span>
-النسخة
-</span>
+    const games =
+        allGames.slice(-8).reverse();
 
-<strong>
-Lite Single-threaded
-</strong>
 
-</div>
+    /* حساب الأبيض والأسود */
 
+    let whiteGames = 0;
+    let whiteWinsCount = 0;
 
-<div class="profile-row">
+    let blackGames = 0;
+    let blackWinsCount = 0;
 
-<span>
-Depth
-</span>
 
-<strong>
-12
-</strong>
+    games.forEach(game => {
 
-</div>
+        const whiteName =
+            game.white &&
+            game.white.username;
 
+        const blackName =
+            game.black &&
+            game.black.username;
 
-<div class="profile-row">
 
-<span>
+        if(
+            whiteName &&
+            whiteName.toLowerCase()
+            === USERNAME.toLowerCase()
+        ){
+
+            whiteGames++;
+
+            if(game.white.result === "win"){
+                whiteWinsCount++;
+            }
+        }
+
+
+        if(
+            blackName &&
+            blackName.toLowerCase()
+            === USERNAME.toLowerCase()
+        ){
+
+            blackGames++;
+
+            if(game.black.result === "win"){
+                blackWinsCount++;
+            }
+        }
+
+    });
+
+
+    if(whiteGames > 0){
+
+        const percent =
+            Math.round(
+                whiteWinsCount /
+                whiteGames * 100
+            );
+
+        document.getElementById(
+            "whiteWins"
+        ).textContent =
+            percent + "%";
+
+        document.getElementById(
+            "whiteDetails"
+        ).textContent =
+            whiteWinsCount +
+            " فوز من " +
+            whiteGames +
+            " مباريات";
+    }
+
+    else{
+
+        document.getElementById(
+            "whiteWins"
+        ).textContent = "—";
+
+        document.getElementById(
+            "whiteDetails"
+        ).textContent =
+            "لا توجد بيانات كافية";
+    }
+
+
+    if(blackGames > 0){
+
+        const percent =
+            Math.round(
+                blackWinsCount /
+                blackGames * 100
+            );
+
+        document.getElementById(
+            "blackWins"
+        ).textContent =
+            percent + "%";
+
+        document.getElementById(
+            "blackDetails"
+        ).textContent =
+            blackWinsCount +
+            " فوز من " +
+            blackGames +
+            " مباريات";
+    }
+
+    else{
+
+        document.getElementById(
+            "blackWins"
+        ).textContent = "—";
+
+        document.getElementById(
+            "blackDetails"
+        ).textContent =
+            "لا توجد بيانات كافية";
+    }
+
+
+    /* عرض المباريات */
+
+    const container =
+        document.getElementById(
+            "gamesList"
+        );
+
+    container.innerHTML = "";
+
+
+    games.forEach(game => {
+
+        const white =
+            game.white || {};
+
+        const black =
+            game.black || {};
+
+
+        const isWhite =
+            white.username &&
+            white.username.toLowerCase()
+            === USERNAME.toLowerCase();
+
+
+        const opponent =
+            isWhite
+            ? black.username
+            : white.username;
+
+
+        const result =
+            isWhite
+            ? white.result
+            : black.result;
+
+
+        let text = "تعادل";
+        let cls = "draw";
+
+
+        if(result === "win"){
+
+            text = "فوز";
+            cls = "win";
+
+        }
+
+        else if(
+            result === "loss" ||
+            result === "checkmated" ||
+            result === "timeout" ||
+  
